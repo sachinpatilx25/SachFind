@@ -153,6 +153,11 @@ body {
     opacity: 0.85;
 }
 
+.brand-title {
+    text-transform: none;
+    letter-spacing: -0.02em;
+}
+
 .header-actions {
     display: flex;
     align-items: center;
@@ -652,8 +657,8 @@ body {
    ========================================================================== */
 .apps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(116px, 1fr));
+    gap: 12px;
 }
 
 .app-tile-wrap {
@@ -665,49 +670,74 @@ body {
     flex: 1;
     background: var(--bg-card);
     border: 1px solid var(--border-dim);
-    padding: 14px 10px;
+    padding: 16px 8px 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
     color: var(--text-high);
     text-decoration: none;
     cursor: pointer;
-    transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
-    min-height: 72px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    min-height: 96px;
 }
 
 .app-tile:hover {
     background: var(--bg-card-hover);
     border-color: var(--border-bright);
     color: var(--text-pure);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
 
-.app-tile img {
-    width: 22px;
-    height: 22px;
-    object-fit: contain;
-    filter: grayscale(15%);
-    transition: filter var(--transition-fast);
-}
-
-.app-tile:hover img {
-    filter: none;
-}
-
-.app-tile-fallback {
-    width: 22px;
-    height: 22px;
+.app-tile-icon-wrap {
+    width: 46px;
+    height: 46px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--border-dim);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.app-tile:hover .app-tile-icon-wrap {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.app-tile img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 6px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+    transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+
+.app-tile:hover img {
+    filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.18));
+}
+
+.app-tile-fallback {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-surface);
     color: var(--text-pure);
     font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 700;
+    font-size: 15px;
+    font-weight: 800;
+    border-radius: 6px;
     border: 1px solid var(--border-mid);
     user-select: none;
 }
@@ -720,6 +750,12 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
+    color: var(--text-med);
+    transition: color var(--transition-fast);
+}
+
+.app-tile:hover span {
+    color: var(--text-pure);
 }
 
 .app-del-btn {
@@ -765,6 +801,97 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+/* Multifunction Vault Component */
+.vault-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.vault-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.vault-title {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-pure);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+}
+
+.vault-tabs {
+    display: inline-flex;
+    background: var(--bg-card);
+    border: 1px solid var(--border-dim);
+    padding: 2px;
+    gap: 2px;
+}
+
+.vault-tab {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: transparent;
+    color: var(--text-med);
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all var(--transition-fast);
+}
+
+.vault-tab:hover {
+    color: var(--text-pure);
+    background: var(--bg-surface);
+}
+
+.vault-tab.active {
+    color: var(--bg-black);
+    background: var(--text-pure);
+    font-weight: 700;
+}
+
+.vault-tab .badge-count {
+    font-size: 10px;
+    padding: 0 4px;
+}
+
+.vault-tab.active .badge-count {
+    color: var(--bg-black);
+    font-weight: 800;
+}
+
+.vault-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.vault-action-btn {
+    min-height: 30px;
+    padding: 4px 10px;
+    font-size: 10px;
+}
+
+.vault-panel {
+    display: block;
+    width: 100%;
 }
 
 .section-header h2 {
@@ -842,6 +969,40 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.content-card:hover .card-thumb-wrap img {
+    transform: scale(1.03);
+}
+
+.card-thumb-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.85) 100%);
+    color: var(--text-med);
+    font-family: var(--font-mono);
+    user-select: none;
+}
+
+.card-thumb-placeholder img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 6px;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+}
+
+.card-thumb-placeholder span {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-med);
+    letter-spacing: 0.04em;
 }
 
 .card-badge-right {

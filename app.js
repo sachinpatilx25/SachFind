@@ -12,29 +12,29 @@
        ========================================================================== */
     const DEFAULT_APPS = [
         // Original Movie Engines
-        ["RogMovies",   "https://rogmovies.one/search.html?q=", false, "https://www.google.com/s2/favicons?domain=rogmovies.one&sz=64", "def_rog", false],
-        ["VegaMovies",  "https://vegamovies.gallery/search.html?q=", false, "https://www.google.com/s2/favicons?domain=vegamovies.gallery&sz=64", "def_vega", false],
-        ["MultiMovies", "https://multimovies.garden/search?q=", false, "https://www.google.com/s2/favicons?domain=multimovies.garden&sz=64", "def_multi", false],
-        ["Flixeo",      "https://flixeo.tv/search?q=", false, "https://www.google.com/s2/favicons?domain=flixeo.tv&sz=64", "def_flixeo", false],
-        ["CineJoy",     "https://cinejoy.pk/search/", false, "https://www.google.com/s2/favicons?domain=cinejoy.pk&sz=64", "def_cinejoy", false],
-        ["Movy.sx",     "https://www.movy.sx/search/", false, "https://www.google.com/s2/favicons?domain=movy.sx&sz=64", "def_movy", false],
+        ["RogMovies",   "https://rogmovies.one/search.html?q=", false, "https://www.google.com/s2/favicons?domain=rogmovies.one&sz=128", "def_rog", false],
+        ["VegaMovies",  "https://vegamovies.gallery/search.html?q=", false, "https://www.google.com/s2/favicons?domain=vegamovies.gallery&sz=128", "def_vega", false],
+        ["MultiMovies", "https://multimovies.garden/search?q=", false, "https://www.google.com/s2/favicons?domain=multimovies.garden&sz=128", "def_multi", false],
+        ["Flixeo",      "https://flixeo.tv/search?q=", false, "https://www.google.com/s2/favicons?domain=flixeo.tv&sz=128", "def_flixeo", false],
+        ["CineJoy",     "https://cinejoy.pk/search/", false, "https://www.google.com/s2/favicons?domain=cinejoy.pk&sz=128", "def_cinejoy", false],
+        ["Movy.sx",     "https://www.movy.sx/search/", false, "https://www.google.com/s2/favicons?domain=movy.sx&sz=128", "def_movy", false],
 
         // Major Platforms & Streamers
-        ["Netflix",     "https://www.netflix.com/search?q=", false, "https://www.google.com/s2/favicons?domain=netflix.com&sz=64", "def_netflix", false],
-        ["Hotstar",     "https://www.hotstar.com/in/explore?search_query=", false, "https://www.google.com/s2/favicons?domain=hotstar.com&sz=64", "def_hotstar", false],
-        ["Prime Video", "https://www.primevideo.com/search?ie=UTF8&ref_=atv_nb_sug&phrase=", false, "https://www.google.com/s2/favicons?domain=primevideo.com&sz=64", "def_prime", false],
-        ["ZEE5",        "https://www.zee5.com/search?q=", false, "https://www.google.com/s2/favicons?domain=zee5.com&sz=64", "def_zee5", false],
-        ["SonyLIV",     "https://www.sonyliv.com/search?q=", false, "https://www.google.com/s2/favicons?domain=sonyliv.com&sz=64", "def_sonyliv", false],
-        ["YouTube",     "https://www.youtube.com/results?search_query=", false, "https://www.google.com/s2/favicons?domain=youtube.com&sz=64", "def_youtube", false],
-        ["Spotify",     "https://open.spotify.com/search/", false, "https://www.google.com/s2/favicons?domain=spotify.com&sz=64", "def_spotify", false],
-        ["Google",      "https://www.google.com/search?q=", false, "https://www.google.com/s2/favicons?domain=google.com&sz=64", "def_google", false],
-        ["WhatsApp",    "https://web.whatsapp.com/", true, "https://www.google.com/s2/favicons?domain=whatsapp.com&sz=64", "def_whatsapp", false],
-        ["Telegram",    "https://web.telegram.org/", true, "https://www.google.com/s2/favicons?domain=web.telegram.org&sz=64", "def_telegram", false],
-        ["Instagram",   "https://instagram.com/", true, "https://www.google.com/s2/favicons?domain=instagram.com&sz=64", "def_instagram", false],
-        ["IMDb",        "https://www.imdb.com/find/?q=", false, "https://www.google.com/s2/favicons?domain=imdb.com&sz=64", "def_imdb", false],
-        ["JustWatch",   "https://www.justwatch.com/in/search?q=", false, "https://www.google.com/s2/favicons?domain=justwatch.com&sz=64", "def_justwatch", false],
-        ["X",           "https://x.com/search?q=", false, "https://www.google.com/s2/favicons?domain=x.com&sz=64", "def_x", false],
-        ["Reddit",      "https://www.reddit.com/search/?q=", false, "https://www.google.com/s2/favicons?domain=reddit.com&sz=64", "def_reddit", false]
+        ["Netflix",     "https://www.netflix.com/search?q=", false, "https://www.google.com/s2/favicons?domain=netflix.com&sz=128", "def_netflix", false],
+        ["Hotstar",     "https://www.hotstar.com/in/explore?search_query=", false, "https://www.google.com/s2/favicons?domain=hotstar.com&sz=128", "def_hotstar", false],
+        ["Prime Video", "https://www.primevideo.com/search?ie=UTF8&ref_=atv_nb_sug&phrase=", false, "https://www.google.com/s2/favicons?domain=primevideo.com&sz=128", "def_prime", false],
+        ["ZEE5",        "https://www.zee5.com/search?q=", false, "https://www.google.com/s2/favicons?domain=zee5.com&sz=128", "def_zee5", false],
+        ["SonyLIV",     "https://www.sonyliv.com/search?q=", false, "https://www.google.com/s2/favicons?domain=sonyliv.com&sz=128", "def_sonyliv", false],
+        ["YouTube",     "https://www.youtube.com/results?search_query=", false, "https://www.google.com/s2/favicons?domain=youtube.com&sz=128", "def_youtube", false],
+        ["Spotify",     "https://open.spotify.com/search/", false, "https://www.google.com/s2/favicons?domain=spotify.com&sz=128", "def_spotify", false],
+        ["Google",      "https://www.google.com/search?q=", false, "https://www.google.com/s2/favicons?domain=google.com&sz=128", "def_google", false],
+        ["WhatsApp",    "https://web.whatsapp.com/", true, "https://www.google.com/s2/favicons?domain=whatsapp.com&sz=128", "def_whatsapp", false],
+        ["Telegram",    "https://web.telegram.org/", true, "https://www.google.com/s2/favicons?domain=web.telegram.org&sz=128", "def_telegram", false],
+        ["Instagram",   "https://instagram.com/", true, "https://www.google.com/s2/favicons?domain=instagram.com&sz=128", "def_instagram", false],
+        ["IMDb",        "https://www.imdb.com/find/?q=", false, "https://www.google.com/s2/favicons?domain=imdb.com&sz=128", "def_imdb", false],
+        ["JustWatch",   "https://www.justwatch.com/in/search?q=", false, "https://www.google.com/s2/favicons?domain=justwatch.com&sz=128", "def_justwatch", false],
+        ["X",           "https://x.com/search?q=", false, "https://www.google.com/s2/favicons?domain=x.com&sz=128", "def_x", false],
+        ["Reddit",      "https://www.reddit.com/search/?q=", false, "https://www.google.com/s2/favicons?domain=reddit.com&sz=128", "def_reddit", false]
     ];
 
     const CUSTOM_APPS_KEY = "sach_custom_apps_v3";
@@ -89,22 +89,72 @@
     const clearHistoryBtn     = document.getElementById("btn-clear-history");
     const btnResetSources     = document.getElementById("btn-reset-sources");
 
-    // Watch Later DOM
-    const wlToggleBtn         = document.getElementById("wlToggleBtn");
-    const wlBadge             = document.getElementById("wlBadge");
-    const wlSection           = document.getElementById("wlSection");
-    const wlCountText         = document.getElementById("wlCountText");
-    const wlClearBtn          = document.getElementById("wlClearBtn");
-    const wlList              = document.getElementById("wlList");
+    // Multifunction Vault DOM
+    const vaultToggleBtn     = document.getElementById("vaultToggleBtn");
+    const vaultBadge         = document.getElementById("vaultBadge");
+    const vaultSection       = document.getElementById("vaultSection");
+    const vaultTabWl         = document.getElementById("vaultTabWl");
+    const vaultTabLinks      = document.getElementById("vaultTabLinks");
+    const vaultWlPanel       = document.getElementById("vaultWlPanel");
+    const vaultLinksPanel    = document.getElementById("vaultLinksPanel");
+    const vaultClearBtn      = document.getElementById("vaultClearBtn");
+    const vaultCloseBtn      = document.getElementById("vaultCloseBtn");
 
-    // Saved Links DOM
-    const linksToggleBtn      = document.getElementById("linksToggleBtn");
-    const linksBadge          = document.getElementById("linksBadge");
-    const linksSection        = document.getElementById("linksSection");
-    const linksCountText      = document.getElementById("linksCountText");
-    const linksClearBtn       = document.getElementById("linksClearBtn");
-    const linksRefreshAllBtn  = document.getElementById("linksRefreshAllBtn");
-    const linksList           = document.getElementById("linksList");
+    const wlCountText        = document.getElementById("wlCountText");
+    const wlList             = document.getElementById("wlList");
+
+    const linksCountText     = document.getElementById("linksCountText");
+    const linksRefreshAllBtn = document.getElementById("linksRefreshAllBtn");
+    const linksList          = document.getElementById("linksList");
+
+    let currentVaultTab = "wl";
+
+    function updateVaultBadge() {
+        const wlCount = getWatchLater().length;
+        const linksCount = getSavedLinks().length;
+        const total = wlCount + linksCount;
+        if (vaultBadge) vaultBadge.textContent = total;
+        if (vaultToggleBtn) vaultToggleBtn.classList.toggle("has-items", total > 0);
+        if (wlCountText) wlCountText.textContent = wlCount;
+        if (linksCountText) linksCountText.textContent = linksCount;
+    }
+
+    function switchVaultTab(tab) {
+        currentVaultTab = tab;
+        const isWl = tab === "wl";
+        if (vaultTabWl) {
+            vaultTabWl.classList.toggle("active", isWl);
+            vaultTabWl.setAttribute("aria-selected", String(isWl));
+        }
+        if (vaultTabLinks) {
+            vaultTabLinks.classList.toggle("active", !isWl);
+            vaultTabLinks.setAttribute("aria-selected", String(!isWl));
+        }
+        if (vaultWlPanel) vaultWlPanel.style.display = isWl ? "block" : "none";
+        if (vaultLinksPanel) vaultLinksPanel.style.display = !isWl ? "block" : "none";
+        if (linksRefreshAllBtn) linksRefreshAllBtn.style.display = !isWl ? "inline-flex" : "none";
+        if (vaultClearBtn) {
+            vaultClearBtn.innerHTML = `<span>${isWl ? "Clear Videos" : "Clear Links"}</span>`;
+            vaultClearBtn.setAttribute("aria-label", isWl ? "Clear Watch Later videos" : "Clear saved links");
+        }
+    }
+
+    function toggleVault(openState, targetTab) {
+        if (!vaultSection) return;
+        const currentlyOpen = vaultSection.style.display !== "none";
+        const shouldOpen = typeof openState === "boolean" ? openState : !currentlyOpen;
+        vaultSection.style.display = shouldOpen ? "flex" : "none";
+        if (vaultToggleBtn) {
+            vaultToggleBtn.classList.toggle("active", shouldOpen);
+            vaultToggleBtn.setAttribute("aria-expanded", String(shouldOpen));
+        }
+        if (targetTab) {
+            switchVaultTab(targetTab);
+        }
+        if (shouldOpen) {
+            vaultSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+    }
 
     // Add App Box DOM
     const addAppToggleBtn     = document.getElementById("addAppToggleBtn");
@@ -247,28 +297,33 @@
             a.title = name;
             a.setAttribute("aria-label", name);
 
+            const iconWrap = document.createElement("div");
+            iconWrap.className = "app-tile-icon-wrap";
+
             const img = document.createElement("img");
             img.src = iconUrl;
             img.alt = "";
-            img.width = 22;
-            img.height = 22;
+            img.width = 36;
+            img.height = 36;
             img.loading = "lazy";
 
             // Fallback monogram if favicon fails
             img.onerror = () => {
                 img.style.display = "none";
-                if (!a.querySelector(".app-tile-fallback")) {
+                if (!iconWrap.querySelector(".app-tile-fallback")) {
                     const fallback = document.createElement("div");
                     fallback.className = "app-tile-fallback";
                     fallback.textContent = (name || "?").charAt(0).toUpperCase();
-                    a.insertBefore(fallback, a.firstChild);
+                    iconWrap.appendChild(fallback);
                 }
             };
+
+            iconWrap.appendChild(img);
 
             const span = document.createElement("span");
             span.textContent = name;
 
-            a.append(img, span);
+            a.append(iconWrap, span);
             wrap.appendChild(a);
             appLinks.push({ el: a, app });
 
@@ -356,7 +411,7 @@
         }
 
         const isDirect = addAppDirectCheck.checked;
-        const iconUrl = "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(domain) + "&sz=64";
+        const iconUrl = "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(domain) + "&sz=128";
 
         const customApp = [
             name,
@@ -655,9 +710,8 @@
 
     function renderWatchLater() {
         const items = getWatchLater();
-        if (wlBadge) wlBadge.textContent = items.length;
         if (wlCountText) wlCountText.textContent = items.length;
-        if (wlToggleBtn) wlToggleBtn.classList.toggle("has-items", items.length > 0);
+        updateVaultBadge();
 
         wlList.innerHTML = "";
         if (!items.length) {
@@ -772,7 +826,82 @@
         renderSavedLinks();
     }
 
-    async function fetchLinkMetadata(url) {
+    function getYouTubeId(url) {
+        try {
+            const u = new URL(url);
+            if (u.hostname.includes("youtube.com")) return u.searchParams.get("v");
+            if (u.hostname.includes("youtu.be")) return u.pathname.slice(1).split("/")[0].split("?")[0];
+        } catch {}
+        return null;
+    }
+
+    function getGitHubRepo(url) {
+        try {
+            const u = new URL(url);
+            if (u.hostname === "github.com" || u.hostname === "www.github.com") {
+                const parts = u.pathname.split("/").filter(Boolean);
+                if (parts.length >= 2) return `${parts[0]}/${parts[1]}`;
+            }
+        } catch {}
+        return null;
+    }
+
+    async function fetchLinkMetadata(rawUrl) {
+        const url = sanitizeUrl(rawUrl);
+        if (!url || url === "about:blank") return null;
+
+        // 1. YouTube specialized Open Graph resolver
+        const ytId = getYouTubeId(url);
+        if (ytId) {
+            let title = "YouTube Video";
+            let author = "YouTube";
+            try {
+                const ctrl = new AbortController();
+                const tid = setTimeout(() => ctrl.abort(), 3500);
+                const resp = await fetch(`https://noembed.com/embed?url=${encodeURIComponent(url)}`, { signal: ctrl.signal });
+                clearTimeout(tid);
+                if (resp.ok) {
+                    const j = await resp.json();
+                    if (j.title) title = j.title;
+                    if (j.author_name) author = `By ${j.author_name}`;
+                }
+            } catch {}
+            return {
+                title: title,
+                description: author,
+                image: `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg`
+            };
+        }
+
+        // 2. GitHub specialized Open Graph resolver
+        const ghRepo = getGitHubRepo(url);
+        if (ghRepo) {
+            return {
+                title: ghRepo,
+                description: `GitHub repository: ${ghRepo}`,
+                image: `https://opengraph.githubassets.com/1/${ghRepo}`
+            };
+        }
+
+        // 3. Dub.co Open Graph metatags API
+        try {
+            const ctrl = new AbortController();
+            const tid = setTimeout(() => ctrl.abort(), 4000);
+            const r = await fetch(`https://api.dub.co/metatags?url=${encodeURIComponent(url)}`, { signal: ctrl.signal });
+            clearTimeout(tid);
+            if (r.ok) {
+                const j = await r.json();
+                if (j && (j.image || j.title)) {
+                    return {
+                        title: j.title || "",
+                        description: j.description || "",
+                        image: j.image || ""
+                    };
+                }
+            }
+        } catch {}
+
+        // 4. Microlink Open Graph extraction API
         try {
             const ctrl = new AbortController();
             const tid = setTimeout(() => ctrl.abort(), 4500);
@@ -780,9 +909,56 @@
             clearTimeout(tid);
             if (resp.ok) {
                 const j = await resp.json();
-                return j && j.data ? j.data : null;
+                const d = j && j.data;
+                if (d) {
+                    const img = (d.image && (d.image.url || (typeof d.image === "string" ? d.image : "")))
+                             || (d.screenshot && d.screenshot.url)
+                             || (d.logo && d.logo.url)
+                             || "";
+                    return {
+                        title: d.title || "",
+                        description: d.description || "",
+                        image: img
+                    };
+                }
             }
         } catch {}
+
+        // 5. CORS Proxy with direct HTML DOMParser to extract meta[property="og:image"]
+        try {
+            const ctrl = new AbortController();
+            const tid = setTimeout(() => ctrl.abort(), 4500);
+            const r = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`, { signal: ctrl.signal });
+            clearTimeout(tid);
+            if (r.ok) {
+                const j = await r.json();
+                if (j && j.contents) {
+                    const doc = new DOMParser().parseFromString(j.contents, "text/html");
+                    const rawImg = doc.querySelector('meta[property="og:image"]')?.getAttribute("content")
+                                || doc.querySelector('meta[property="og:image:url"]')?.getAttribute("content")
+                                || doc.querySelector('meta[property="og:image:secure_url"]')?.getAttribute("content")
+                                || doc.querySelector('meta[name="twitter:image"]')?.getAttribute("content")
+                                || doc.querySelector('meta[name="twitter:image:src"]')?.getAttribute("content")
+                                || doc.querySelector('link[rel="image_src"]')?.getAttribute("href");
+                    let ogImg = "";
+                    if (rawImg) {
+                        try { ogImg = new URL(rawImg, url).href; } catch { ogImg = rawImg; }
+                    }
+                    const title = doc.querySelector('meta[property="og:title"]')?.getAttribute("content")
+                               || doc.querySelector('meta[name="twitter:title"]')?.getAttribute("content")
+                               || doc.title
+                               || "";
+                    const description = doc.querySelector('meta[property="og:description"]')?.getAttribute("content")
+                                     || doc.querySelector('meta[name="twitter:description"]')?.getAttribute("content")
+                                     || doc.querySelector('meta[name="description"]')?.getAttribute("content")
+                                     || "";
+                    if (ogImg || title) {
+                        return { title, description, image: ogImg };
+                    }
+                }
+            }
+        } catch {}
+
         return null;
     }
 
@@ -793,28 +969,40 @@
         let domain = "";
         try { domain = new URL(url).hostname.replace(/^www\./, ""); } catch { domain = url; }
 
+        let initialImage = "";
+        const ytId = getYouTubeId(url);
+        const ghRepo = getGitHubRepo(url);
+        if (ytId) {
+            initialImage = `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg`;
+        } else if (ghRepo) {
+            initialImage = `https://opengraph.githubassets.com/1/${ghRepo}`;
+        } else {
+            initialImage = `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=960`;
+        }
+
         const item = {
             id: "link_" + Date.now(),
             url: url,
             domain: domain,
             title: domain,
             description: url,
-            image: "https://s0.wp.com/mshots/v1/" + encodeURIComponent(url) + "?w=640",
-            favicon: "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(domain) + "&sz=64"
+            image: initialImage,
+            favicon: "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(domain) + "&sz=128"
         };
 
         const list = getSavedLinks();
         list.unshift(item);
         saveSavedLinks(list);
-        showToast("Saved Link: " + domain);
+        showToast("Fetching OG metadata: " + domain);
 
-        // Fetch OpenGraph in background via Microlink
+        // Fetch OpenGraph in background
         const data = await fetchLinkMetadata(url);
         if (data) {
             if (data.title) item.title = data.title;
             if (data.description) item.description = data.description;
-            if (data.image && data.image.url) item.image = data.image.url;
+            if (data.image) item.image = data.image;
             saveSavedLinks(list);
+            showToast("OG Thumbnail updated: " + domain);
         }
     }
 
@@ -824,26 +1012,26 @@
             showToast("No links to refresh");
             return;
         }
-        showToast("Refreshing metadata...");
+        showToast("Refreshing OG metadata for links...");
         let updated = 0;
-        for (const item of list.slice(0, 5)) {
+        for (const item of list.slice(0, 8)) {
             const data = await fetchLinkMetadata(item.url);
             if (data) {
-                if (data.title) item.title = data.title;
-                if (data.description) item.description = data.description;
-                if (data.image && data.image.url) item.image = data.image.url;
-                updated++;
+                let changed = false;
+                if (data.title && data.title !== item.title) { item.title = data.title; changed = true; }
+                if (data.description && data.description !== item.description) { item.description = data.description; changed = true; }
+                if (data.image && data.image !== item.image) { item.image = data.image; changed = true; }
+                if (changed) updated++;
             }
         }
         saveSavedLinks(list);
-        showToast(updated ? `Refreshed ${updated} links` : "Metadata up to date");
+        showToast(updated ? `Updated OG metadata for ${updated} links` : "Metadata is up to date");
     }
 
     function renderSavedLinks() {
         const items = getSavedLinks();
-        if (linksBadge) linksBadge.textContent = items.length;
         if (linksCountText) linksCountText.textContent = items.length;
-        if (linksToggleBtn) linksToggleBtn.classList.toggle("has-items", items.length > 0);
+        updateVaultBadge();
 
         linksList.innerHTML = "";
         if (!items.length) {
@@ -889,10 +1077,34 @@
             if (item.image) {
                 const img = document.createElement("img");
                 img.src = item.image;
-                img.alt = "";
+                img.alt = item.title || item.domain || "Thumbnail";
                 img.loading = "lazy";
-                img.onerror = () => { img.style.display = "none"; };
+                img.onerror = () => {
+                    if (!img.dataset.fallbackTried) {
+                        img.dataset.fallbackTried = "1";
+                        img.src = "https://s0.wp.com/mshots/v1/" + encodeURIComponent(item.url) + "?w=960";
+                    } else {
+                        img.style.display = "none";
+                        if (!thumbWrap.querySelector(".card-thumb-placeholder")) {
+                            const ph = document.createElement("div");
+                            ph.className = "card-thumb-placeholder";
+                            ph.innerHTML = `
+                                <img src="${escapeHtml(item.favicon || 'icon.svg')}" alt="" width="32" height="32">
+                                <span>${escapeHtml(item.domain)}</span>
+                            `;
+                            thumbWrap.insertBefore(ph, thumbWrap.firstChild);
+                        }
+                    }
+                };
                 thumbWrap.appendChild(img);
+            } else {
+                const ph = document.createElement("div");
+                ph.className = "card-thumb-placeholder";
+                ph.innerHTML = `
+                    <img src="${escapeHtml(item.favicon || 'icon.svg')}" alt="" width="32" height="32">
+                    <span>${escapeHtml(item.domain)}</span>
+                `;
+                thumbWrap.appendChild(ph);
             }
 
             const domBadge = document.createElement("span");
@@ -903,7 +1115,6 @@
             const meta = document.createElement("div");
             meta.className = "card-meta";
 
-            // Title must be appended before description!
             const t = document.createElement("div");
             t.className = "card-title";
             t.textContent = item.title;
@@ -1187,38 +1398,31 @@
             });
         }
 
-        // Watch Later toggles
-        if (wlToggleBtn) {
-            wlToggleBtn.addEventListener("click", () => {
-                const open = wlSection.style.display === "none";
-                wlSection.style.display = open ? "flex" : "none";
-                wlToggleBtn.classList.toggle("active", open);
-                wlToggleBtn.setAttribute("aria-expanded", String(open));
-            });
+        // Multifunction Vault Toggles & Tabs
+        if (vaultToggleBtn) {
+            vaultToggleBtn.addEventListener("click", () => toggleVault());
         }
-        if (wlClearBtn) {
-            wlClearBtn.addEventListener("click", () => {
-                if (window.confirm("Clear all items from Watch Later?")) {
-                    saveWatchLater([]);
-                    showToast("Watch Later cleared");
-                }
-            });
+        if (vaultCloseBtn) {
+            vaultCloseBtn.addEventListener("click", () => toggleVault(false));
         }
-
-        // Saved Links toggles
-        if (linksToggleBtn) {
-            linksToggleBtn.addEventListener("click", () => {
-                const open = linksSection.style.display === "none";
-                linksSection.style.display = open ? "flex" : "none";
-                linksToggleBtn.classList.toggle("active", open);
-                linksToggleBtn.setAttribute("aria-expanded", String(open));
-            });
+        if (vaultTabWl) {
+            vaultTabWl.addEventListener("click", () => switchVaultTab("wl"));
         }
-        if (linksClearBtn) {
-            linksClearBtn.addEventListener("click", () => {
-                if (window.confirm("Clear all saved links?")) {
-                    saveSavedLinks([]);
-                    showToast("Links cleared");
+        if (vaultTabLinks) {
+            vaultTabLinks.addEventListener("click", () => switchVaultTab("links"));
+        }
+        if (vaultClearBtn) {
+            vaultClearBtn.addEventListener("click", () => {
+                if (currentVaultTab === "wl") {
+                    if (window.confirm("Clear all items from Watch Later?")) {
+                        saveWatchLater([]);
+                        showToast("Watch Later cleared");
+                    }
+                } else {
+                    if (window.confirm("Clear all saved links?")) {
+                        saveSavedLinks([]);
+                        showToast("Saved links cleared");
+                    }
                 }
             });
         }

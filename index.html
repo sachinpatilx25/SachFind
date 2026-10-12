@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#000000">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    
-    <title>SACH.IN — Minimalist Search Engine &amp; Media Cockpit</title>
-    <meta name="description" content="SACH.IN is an ultra-sharp pitch-black search aggregator, movie suggestion engine, YouTube viewer, and link vault built for maximum speed and focus.">
+
+    <title>SACH.IN</title>
+    <meta name="description"
+        content="SACH.IN is an ultra-sharp pitch-black search aggregator, movie suggestion engine, YouTube viewer, and link vault built for maximum speed and focus.">
     <link rel="canonical" href="./">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="./">
+    <meta property="og:site_name" content="SACH.IN">
     <meta property="og:title" content="SACH.IN — Minimalist Search Engine &amp; Media Cockpit">
-    <meta property="og:description" content="Ultra-sharp pitch-black search aggregator, movie engine, and personal link vault.">
+    <meta property="og:description"
+        content="Ultra-sharp pitch-black search aggregator, movie engine, and personal link vault.">
     <meta property="og:image" content="icon.svg">
+    <meta property="og:image:type" content="image/svg+xml">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:alt" content="SACH.IN Logo">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="SACH.IN — Minimalist Search Engine &amp; Media Cockpit">
-    <meta name="twitter:description" content="Ultra-sharp pitch-black search aggregator, movie engine, and personal link vault.">
+    <meta name="twitter:description"
+        content="Ultra-sharp pitch-black search aggregator, movie engine, and personal link vault.">
     <meta name="twitter:image" content="icon.svg">
+    <meta name="twitter:image:alt" content="SACH.IN Logo">
 
     <!-- Preconnect & DNS Prefetch -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,13 +41,16 @@
     <link rel="dns-prefetch" href="https://i.ytimg.com">
     <link rel="dns-prefetch" href="https://api.microlink.io">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/svg+xml" href="icon.svg">
     <link rel="apple-touch-icon" href="icon.svg">
 </head>
+
 <body>
     <a href="#search-input" class="skip-link">Skip to search</a>
 
@@ -45,24 +58,25 @@
         <!-- HEADER -->
         <header class="header" role="banner">
             <div class="brand-section">
-                <a href="./" class="brand-logo" aria-label="SACH.IN Home">SACH.IN</a>
+                <a href="./" class="brand-logo" aria-label="SACH.IN Home">
+                    <span class="brand-title">✦-- S💀ch.🖕🏻n --✦</span>
+                </a>
             </div>
             <nav class="header-actions" aria-label="Quick actions">
-                <button type="button" id="wlToggleBtn" class="btn-icon-text" aria-expanded="false" aria-controls="wlSection" title="Watch Later" aria-label="Toggle Watch Later drawer">
+                <button type="button" id="vaultToggleBtn" class="btn-icon-text" aria-expanded="false"
+                    aria-controls="vaultSection" title="Watch Later" aria-label="Toggle Watch Later drawer">
                     <span aria-hidden="true">⏱</span>
-                    <span>Later</span>
-                    <span id="wlBadge" class="header-badge" aria-label="Saved items count">0</span>
+                    <span>Watch Later</span>
+                    <span id="vaultBadge" class="header-badge" aria-label="Saved items in Watch Later">0</span>
                 </button>
-                <button type="button" id="linksToggleBtn" class="btn-icon-text" aria-expanded="false" aria-controls="linksSection" title="Saved Links" aria-label="Toggle Saved Links drawer">
-                    <span aria-hidden="true">⎘</span>
-                    <span>Saved</span>
-                    <span id="linksBadge" class="header-badge" aria-label="Saved links count">0</span>
-                </button>
-                <button type="button" id="addAppToggleBtn" class="btn-icon-text" aria-expanded="false" aria-controls="addAppBox" title="Add Search Engine or App" aria-label="Add custom search engine or app">
+                <button type="button" id="addAppToggleBtn" class="btn-icon-text" aria-expanded="false"
+                    aria-controls="addAppBox" title="Add Search Engine or App"
+                    aria-label="Add custom search engine or app">
                     <span aria-hidden="true">+</span>
                     <span>Add</span>
                 </button>
-                <button type="button" id="btn-reset-sources" class="btn-icon-text" title="Reset defaults" aria-label="Reset search engines to default list">
+                <button type="button" id="btn-reset-sources" class="btn-icon-text" title="Reset defaults"
+                    aria-label="Reset search engines to default list">
                     <span aria-hidden="true">↺</span>
                     <span class="sr-only">Reset defaults</span>
                 </button>
@@ -73,30 +87,22 @@
         <section class="search-cockpit" aria-label="Search Cockpit">
             <div class="search-input-wrapper">
                 <div class="search-icon-prefix" aria-hidden="true">&gt;_</div>
-                <input 
-                    type="text" 
-                    id="search-input" 
-                    class="search-input" 
-                    placeholder="Search movie, stream, or paste URL... (Press / to focus)" 
-                    autocomplete="off" 
-                    spellcheck="false"
-                    autofocus
-                    role="combobox"
-                    aria-autocomplete="list"
-                    aria-expanded="false"
-                    aria-controls="suggestions"
-                    aria-haspopup="listbox"
-                    aria-label="Search query or destination URL"
-                >
-                <button type="button" id="search-clear" class="search-input-clear" title="Clear search" aria-label="Clear search input">×</button>
-                <button type="button" id="search-button" class="search-submit-btn" aria-label="Execute search on top engine">
+                <input type="text" id="search-input" class="search-input"
+                    placeholder="Search movie, stream, or paste URL... (Press / to focus)" autocomplete="off"
+                    spellcheck="false" autofocus role="combobox" aria-autocomplete="list" aria-expanded="false"
+                    aria-controls="suggestions" aria-haspopup="listbox" aria-label="Search query or destination URL">
+                <button type="button" id="search-clear" class="search-input-clear" title="Clear search"
+                    aria-label="Clear search input">×</button>
+                <button type="button" id="search-button" class="search-submit-btn"
+                    aria-label="Execute search on top engine">
                     <span>Search</span>
                     <span aria-hidden="true">↵</span>
                 </button>
             </div>
 
             <!-- Instant IMDb & URL Suggestions Dropdown -->
-            <div id="suggestions" class="suggestions-box" role="listbox" aria-label="Search suggestions" aria-live="polite"></div>
+            <div id="suggestions" class="suggestions-box" role="listbox" aria-label="Search suggestions"
+                aria-live="polite"></div>
 
             <div class="cockpit-toolbar">
                 <div class="cockpit-stats">
@@ -109,20 +115,27 @@
             <div class="recent-searches-row" aria-label="Recent search history">
                 <span class="recent-label">Recent:</span>
                 <div id="recent-tags" class="recent-tags-container" role="list"></div>
-                <button type="button" id="btn-clear-history" class="btn-clear-history" title="Clear history" aria-label="Clear all recent search queries">Clear</button>
+                <button type="button" id="btn-clear-history" class="btn-clear-history" title="Clear history"
+                    aria-label="Clear all recent search queries">Clear</button>
             </div>
         </section>
 
         <!-- ADD APP DRAWER -->
-        <div id="addAppBox" class="drawer-box" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="addAppTitle">
+        <div id="addAppBox" class="drawer-box" style="display: none;" role="dialog" aria-modal="true"
+            aria-labelledby="addAppTitle">
             <div class="drawer-header">
                 <span id="addAppTitle" class="drawer-title">+ Add Engine / App</span>
-                <button type="button" id="addAppCancelBtn" class="btn-mini-icon" aria-label="Close add engine drawer">×</button>
+                <button type="button" id="addAppCancelBtn" class="btn-mini-icon"
+                    aria-label="Close add engine drawer">×</button>
             </div>
             <div class="drawer-row">
-                <input type="text" id="addAppUrlInput" class="form-input" placeholder="URL or Search URL (e.g. twitch.tv or https://site.com/search?q={q})" autocomplete="off" aria-label="Engine target URL">
-                <input type="text" id="addAppNameInput" class="form-input" placeholder="Name (optional)" autocomplete="off" aria-label="Engine name">
-                <button type="button" id="addAppSubmitBtn" class="btn-action-primary" aria-label="Submit new engine">Add</button>
+                <input type="text" id="addAppUrlInput" class="form-input"
+                    placeholder="URL or Search URL (e.g. twitch.tv or https://site.com/search?q={q})" autocomplete="off"
+                    aria-label="Engine target URL">
+                <input type="text" id="addAppNameInput" class="form-input" placeholder="Name (optional)"
+                    autocomplete="off" aria-label="Engine name">
+                <button type="button" id="addAppSubmitBtn" class="btn-action-primary"
+                    aria-label="Submit new engine">Add</button>
             </div>
             <div class="drawer-options">
                 <label class="drawer-checkbox">
@@ -133,25 +146,46 @@
             <div id="addAppStatus" class="form-status" role="status" aria-live="polite"></div>
         </div>
 
-        <!-- WATCH LATER SECTION (Collapsible) -->
-        <section id="wlSection" class="collapsible-section" style="display: none;" aria-labelledby="wlHeading">
-            <div class="section-header">
-                <h2 id="wlHeading">Watch Later <span id="wlCountText" class="badge-count">0</span></h2>
-                <button type="button" id="wlClearBtn" class="btn-mini-danger" aria-label="Clear all items from Watch Later">Clear All</button>
-            </div>
-            <div id="wlList" class="cards-grid"></div>
-        </section>
-
-        <!-- SAVED LINKS SECTION (Collapsible) -->
-        <section id="linksSection" class="collapsible-section" style="display: none;" aria-labelledby="linksHeading">
-            <div class="section-header">
-                <h2 id="linksHeading">Saved Links <span id="linksCountText" class="badge-count">0</span></h2>
-                <div class="header-actions">
-                    <button type="button" id="linksRefreshAllBtn" class="btn-icon-text" aria-label="Refresh metadata for saved links">↺ Refresh All</button>
-                    <button type="button" id="linksClearBtn" class="btn-mini-danger" aria-label="Clear all saved links">Clear All</button>
+        <!-- MULTIFUNCTION VAULT SECTION (Collapsible) -->
+        <section id="vaultSection" class="collapsible-section vault-section" style="display: none;" aria-labelledby="vaultHeading">
+            <div class="section-header vault-header">
+                <div class="vault-header-left">
+                    <h2 id="vaultHeading" class="vault-title">
+                        <span aria-hidden="true">⏱</span>
+                        <span>Watch Later</span>
+                    </h2>
+                    <div class="vault-tabs" role="tablist" aria-label="Vault categories">
+                        <button type="button" role="tab" id="vaultTabWl" class="vault-tab active" aria-selected="true" aria-controls="vaultWlPanel">
+                            <span class="tab-icon" aria-hidden="true">⏱</span>
+                            <span>Videos</span>
+                            <span id="wlCountText" class="badge-count">0</span>
+                        </button>
+                        <button type="button" role="tab" id="vaultTabLinks" class="vault-tab" aria-selected="false" aria-controls="vaultLinksPanel">
+                            <span class="tab-icon" aria-hidden="true">⎘</span>
+                            <span>Links</span>
+                            <span id="linksCountText" class="badge-count">0</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="vault-actions">
+                    <button type="button" id="linksRefreshAllBtn" class="btn-icon-text vault-action-btn" title="Refresh links metadata" aria-label="Refresh metadata for saved links" style="display: none;">
+                        <span aria-hidden="true">↺</span>
+                        <span>Refresh</span>
+                    </button>
+                    <button type="button" id="vaultClearBtn" class="btn-mini-danger" aria-label="Clear active vault tab items">
+                        <span>Clear Videos</span>
+                    </button>
+                    <button type="button" id="vaultCloseBtn" class="btn-mini-icon" title="Close Watch Later" aria-label="Close Watch Later drawer">×</button>
                 </div>
             </div>
-            <div id="linksList" class="cards-grid"></div>
+            
+            <div id="vaultWlPanel" role="tabpanel" aria-labelledby="vaultTabWl" class="vault-panel active">
+                <div id="wlList" class="cards-grid"></div>
+            </div>
+
+            <div id="vaultLinksPanel" role="tabpanel" aria-labelledby="vaultTabLinks" class="vault-panel" style="display: none;">
+                <div id="linksList" class="cards-grid"></div>
+            </div>
         </section>
 
         <!-- APP / ENGINE TILES GRID -->
@@ -180,4 +214,5 @@
 
     <script src="app.js" defer></script>
 </body>
+
 </html>
