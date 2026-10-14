@@ -2,13 +2,13 @@
   "id": "sach-in",
   "name": "SACH.IN",
   "short_name": "SACH.IN",
-  "description": "Ultra-sharp pitch-black minimalist search aggregator and personal media cockpit designed for high efficiency.",
+  "description": "Clean minimalist search dashboard, media engine, and link vault.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#111317",
+  "theme_color": "#111317",
   "categories": ["search", "utilities", "entertainment", "productivity"],
   "icons": [
     {

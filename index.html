@@ -9,16 +9,16 @@
 
     <title>SACH.IN</title>
     <meta name="description"
-        content="SACH.IN is an ultra-sharp pitch-black search aggregator, movie suggestion engine, YouTube viewer, and link vault built for maximum speed and focus.">
+        content="SACH.IN is a clean minimalist search dashboard, movie suggestion engine, YouTube viewer, and link vault built for simplicity and speed.">
     <link rel="canonical" href="./">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="./">
     <meta property="og:site_name" content="SACH.IN">
-    <meta property="og:title" content="SACH.IN — Minimalist Search Engine &amp; Media Cockpit">
+    <meta property="og:title" content="SACH.IN — Minimalist Search Dashboard">
     <meta property="og:description"
-        content="Ultra-sharp pitch-black search aggregator, movie engine, and personal link vault.">
+        content="Clean minimalist search dashboard, movie engine, and personal link vault.">
     <meta property="og:image" content="icon.svg">
     <meta property="og:image:type" content="image/svg+xml">
     <meta property="og:image:width" content="512">
@@ -27,9 +27,9 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="SACH.IN — Minimalist Search Engine &amp; Media Cockpit">
+    <meta name="twitter:title" content="SACH.IN — Minimalist Search Dashboard">
     <meta name="twitter:description"
-        content="Ultra-sharp pitch-black search aggregator, movie engine, and personal link vault.">
+        content="Clean minimalist search dashboard, movie engine, and personal link vault.">
     <meta name="twitter:image" content="icon.svg">
     <meta name="twitter:image:alt" content="SACH.IN Logo">
 
@@ -63,21 +63,12 @@
                 </a>
             </div>
             <nav class="header-actions" aria-label="Quick actions">
-                <button type="button" id="vaultToggleBtn" class="btn-icon-text" aria-expanded="false"
-                    aria-controls="vaultSection" title="Watch Later" aria-label="Toggle Watch Later drawer">
-                    <span aria-hidden="true">⏱</span>
-                    <span>Watch Later</span>
-                    <span id="vaultBadge" class="header-badge" aria-label="Saved items in Watch Later">0</span>
-                </button>
-                <button type="button" id="addAppToggleBtn" class="btn-icon-text" aria-expanded="false"
-                    aria-controls="addAppBox" title="Add Search Engine or App"
-                    aria-label="Add custom search engine or app">
-                    <span aria-hidden="true">+</span>
-                    <span>Add</span>
-                </button>
                 <button type="button" id="btn-reset-sources" class="btn-icon-text" title="Reset defaults"
                     aria-label="Reset search engines to default list">
-                    <span aria-hidden="true">↺</span>
+                    <svg class="btn-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                        <path d="M3 3v5h5"></path>
+                    </svg>
                     <span class="sr-only">Reset defaults</span>
                 </button>
             </nav>
@@ -86,17 +77,27 @@
         <!-- SEARCH COCKPIT -->
         <section class="search-cockpit" aria-label="Search Cockpit">
             <div class="search-input-wrapper">
-                <div class="search-icon-prefix" aria-hidden="true">&gt;_</div>
+                <div class="search-icon-prefix" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </div>
                 <input type="text" id="search-input" class="search-input"
-                    placeholder="Search movie, stream, or paste URL... (Press / to focus)" autocomplete="off"
+                    placeholder="Search movies, stream, or paste URL... (Press / to focus)" autocomplete="off"
                     spellcheck="false" autofocus role="combobox" aria-autocomplete="list" aria-expanded="false"
                     aria-controls="suggestions" aria-haspopup="listbox" aria-label="Search query or destination URL">
                 <button type="button" id="search-clear" class="search-input-clear" title="Clear search"
-                    aria-label="Clear search input">×</button>
+                    aria-label="Clear search input">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
                 <button type="button" id="search-button" class="search-submit-btn"
-                    aria-label="Execute search on top engine">
-                    <span>Search</span>
-                    <span aria-hidden="true">↵</span>
+                    aria-label="Execute search">
+                    <span id="searchBtnText">Search</span>
+                    <kbd class="search-enter-kbd" aria-hidden="true">↵</kbd>
                 </button>
             </div>
 
@@ -106,13 +107,26 @@
 
             <div class="cockpit-toolbar">
                 <div class="cockpit-stats">
-                    <span id="current-query-display" title="Active Query">READY</span>
-                    <span id="active-count" class="highlight">0 ENGINES</span>
+                    <span class="status-indicator-dot" aria-hidden="true"></span>
+                    <span id="current-query-display" class="query-status" title="Active Query">Ready</span>
+                    <span class="stats-sep" aria-hidden="true">·</span>
+                    <span id="active-count" class="engines-count">0</span>
+                    <span class="engines-label">engines</span>
+                </div>
+                <div class="cockpit-multi-controls">
+                    <label class="cockpit-switch-label" title="After every search, automatically open tabs one by one with 5s delay">
+                        <input type="checkbox" id="toggleMultiTab" class="cockpit-switch-input" checked>
+                        <span class="cockpit-switch-slider" aria-hidden="true"></span>
+                        <span class="cockpit-switch-text">Multi-tab</span>
+                    </label>
+                    <button type="button" id="btnScopeToggle" class="btn-scope-toggle" title="Click to switch between search engines and all sites">
+                        <span id="scopeLabel"></span>
+                    </button>
                 </div>
             </div>
 
             <!-- Recent Queries -->
-            <div class="recent-searches-row" aria-label="Recent search history">
+            <div class="recent-searches-row" aria-label="Recent search history" style="display: none;">
                 <span class="recent-label">Recent:</span>
                 <div id="recent-tags" class="recent-tags-container" role="list"></div>
                 <button type="button" id="btn-clear-history" class="btn-clear-history" title="Clear history"
@@ -120,13 +134,35 @@
             </div>
         </section>
 
-        <!-- ADD APP DRAWER -->
+        <!-- APP / ENGINE TILES GRID -->
+        <main id="main-content" role="main">
+            <h1 class="sr-only">Search Engines and Quick Launch Grid</h1>
+            <div id="apps" class="apps-grid"></div>
+            <!-- Add Button Where Apps End -->
+            <div class="apps-end-bar">
+                <button type="button" id="addAppToggleBtn" class="btn-icon-text btn-add-end" aria-expanded="false"
+                    aria-controls="addAppBox" title="Add Search Engine or App" aria-label="Add custom search engine or app">
+                    <svg class="btn-icon-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span>Add</span>
+                </button>
+            </div>
+        </main>
+
+        <!-- ADD APP DRAWER (Positioned right after apps) -->
         <div id="addAppBox" class="drawer-box" style="display: none;" role="dialog" aria-modal="true"
             aria-labelledby="addAppTitle">
             <div class="drawer-header">
-                <span id="addAppTitle" class="drawer-title">+ Add Engine / App</span>
+                <span id="addAppTitle" class="drawer-title">+ Add Shortcut / Engine</span>
                 <button type="button" id="addAppCancelBtn" class="btn-mini-icon"
-                    aria-label="Close add engine drawer">×</button>
+                    aria-label="Close add engine drawer">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
             </div>
             <div class="drawer-row">
                 <input type="text" id="addAppUrlInput" class="form-input"
@@ -146,22 +182,43 @@
             <div id="addAppStatus" class="form-status" role="status" aria-live="polite"></div>
         </div>
 
-        <!-- MULTIFUNCTION VAULT SECTION (Collapsible) -->
+        <!-- BOTTOM TOOLBAR (Later in Bottom) -->
+        <div class="bottom-toolbar">
+            <button type="button" id="vaultToggleBtn" class="btn-icon-text btn-later-bottom" aria-expanded="false"
+                aria-controls="vaultSection" title="Later &amp; Links" aria-label="Toggle Later drawer">
+                <svg class="btn-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span>Later</span>
+                <span id="vaultBadge" class="header-badge" aria-label="Saved items in Later">0</span>
+            </button>
+        </div>
+
+        <!-- MULTIFUNCTION VAULT SECTION (In Bottom) -->
         <section id="vaultSection" class="collapsible-section vault-section" style="display: none;" aria-labelledby="vaultHeading">
             <div class="section-header vault-header">
                 <div class="vault-header-left">
                     <h2 id="vaultHeading" class="vault-title">
-                        <span aria-hidden="true">⏱</span>
-                        <span>Watch Later</span>
+                        <svg class="vault-title-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span>Later &amp; Links</span>
                     </h2>
                     <div class="vault-tabs" role="tablist" aria-label="Vault categories">
                         <button type="button" role="tab" id="vaultTabWl" class="vault-tab active" aria-selected="true" aria-controls="vaultWlPanel">
-                            <span class="tab-icon" aria-hidden="true">⏱</span>
+                            <svg class="tab-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
                             <span>Videos</span>
                             <span id="wlCountText" class="badge-count">0</span>
                         </button>
                         <button type="button" role="tab" id="vaultTabLinks" class="vault-tab" aria-selected="false" aria-controls="vaultLinksPanel">
-                            <span class="tab-icon" aria-hidden="true">⎘</span>
+                            <svg class="tab-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                            </svg>
                             <span>Links</span>
                             <span id="linksCountText" class="badge-count">0</span>
                         </button>
@@ -169,13 +226,21 @@
                 </div>
                 <div class="vault-actions">
                     <button type="button" id="linksRefreshAllBtn" class="btn-icon-text vault-action-btn" title="Refresh links metadata" aria-label="Refresh metadata for saved links" style="display: none;">
-                        <span aria-hidden="true">↺</span>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                            <path d="M3 3v5h5"></path>
+                        </svg>
                         <span>Refresh</span>
                     </button>
                     <button type="button" id="vaultClearBtn" class="btn-mini-danger" aria-label="Clear active vault tab items">
-                        <span>Clear Videos</span>
+                        <span>Clear</span>
                     </button>
-                    <button type="button" id="vaultCloseBtn" class="btn-mini-icon" title="Close Watch Later" aria-label="Close Watch Later drawer">×</button>
+                    <button type="button" id="vaultCloseBtn" class="btn-mini-icon" title="Close Watch Later" aria-label="Close Watch Later drawer">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
                 </div>
             </div>
             
@@ -188,12 +253,6 @@
             </div>
         </section>
 
-        <!-- APP / ENGINE TILES GRID -->
-        <main id="main-content" role="main">
-            <h1 class="sr-only">Search Engines and Quick Launch Grid</h1>
-            <div id="apps" class="apps-grid"></div>
-        </main>
-
         <!-- YOUTUBE RESULTS (Search Triggered) -->
         <section id="ytSection" class="collapsible-section" style="display: none;" aria-labelledby="ytHeading">
             <div class="section-header">
@@ -205,7 +264,8 @@
 
         <!-- FOOTER -->
         <footer class="footer" role="contentinfo">
-            <div>SACH.IN &copy; 2026 </div>
+            <div class="footer-brand">SACH.IN &copy; 2026</div>
+            <div class="footer-hint">Press <kbd>/</kbd> to search</div>
         </footer>
     </div>
 

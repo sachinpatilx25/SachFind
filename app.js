@@ -17,7 +17,7 @@
         ["MultiMovies", "https://multimovies.garden/search?q=", false, "https://www.google.com/s2/favicons?domain=multimovies.garden&sz=128", "def_multi", false],
         ["Flixeo",      "https://flixeo.tv/search?q=", false, "https://www.google.com/s2/favicons?domain=flixeo.tv&sz=128", "def_flixeo", false],
         ["CineJoy",     "https://cinejoy.pk/search/", false, "https://www.google.com/s2/favicons?domain=cinejoy.pk&sz=128", "def_cinejoy", false],
-        ["Movy.sx",     "https://www.movy.sx/search/", false, "https://www.google.com/s2/favicons?domain=movy.sx&sz=128", "def_movy", false],
+        ["Movy.sx",     "https://www.movy.sx/", false, "https://www.google.com/s2/favicons?domain=movy.sx&sz=128", "def_movy", false],
 
         // Major Platforms & Streamers
         ["Netflix",     "https://www.netflix.com/search?q=", false, "https://www.google.com/s2/favicons?domain=netflix.com&sz=128", "def_netflix", false],
@@ -37,10 +37,12 @@
         ["Reddit",      "https://www.reddit.com/search/?q=", false, "https://www.google.com/s2/favicons?domain=reddit.com&sz=128", "def_reddit", false]
     ];
 
-    const CUSTOM_APPS_KEY = "sach_custom_apps_v3";
-    const HISTORY_KEY     = "sach_history_v3";
-    const WL_STORAGE_KEY  = "sach_wl_v3";
+    const CUSTOM_APPS_KEY   = "sach_custom_apps_v3";
+    const HISTORY_KEY       = "sach_history_v3";
+    const WL_STORAGE_KEY    = "sach_wl_v3";
     const LINKS_STORAGE_KEY = "sach_links_v3";
+    const MULTI_SEARCH_KEY  = "sach_multi_search_enabled_v1";
+    const MULTI_SCOPE_KEY   = "sach_multi_search_scope_v1";
 
     /* ==========================================================================
        SAFE STORAGE WRAPPERS
@@ -88,6 +90,11 @@
     const recentTagsEl        = document.getElementById("recent-tags");
     const clearHistoryBtn     = document.getElementById("btn-clear-history");
     const btnResetSources     = document.getElementById("btn-reset-sources");
+    // Multi-Tab Search DOM
+    const toggleMultiTab         = document.getElementById("toggleMultiTab");
+    const btnScopeToggle         = document.getElementById("btnScopeToggle");
+    const scopeLabel             = document.getElementById("scopeLabel");
+    const searchBtnText          = document.getElementById("searchBtnText");
 
     // Multifunction Vault DOM
     const vaultToggleBtn     = document.getElementById("vaultToggleBtn");
@@ -255,10 +262,12 @@
     function renderHistory() {
         const list = loadHistory();
         recentTagsEl.innerHTML = "";
+        const recentRow = document.querySelector(".recent-searches-row");
         if (!list.length) {
-            recentTagsEl.innerHTML = '<span style="font-size:11px;color:var(--text-low);">None</span>';
+            if (recentRow) recentRow.style.display = "none";
             return;
         }
+        if (recentRow) recentRow.style.display = "flex";
         list.forEach(item => {
             const tag = document.createElement("button");
             tag.type = "button";
@@ -288,6 +297,7 @@
             const [name, , , iconUrl, id, isCustom] = app;
             const wrap = document.createElement("div");
             wrap.className = "app-tile-wrap";
+            wrap.dataset.appId = id || name;
 
             const a = document.createElement("a");
             a.className = "app-tile";
@@ -303,8 +313,8 @@
             const img = document.createElement("img");
             img.src = iconUrl;
             img.alt = "";
-            img.width = 36;
-            img.height = 36;
+            img.width = 30;
+            img.height = 30;
             img.loading = "lazy";
 
             // Fallback monogram if favicon fails
@@ -331,7 +341,7 @@
                 const del = document.createElement("button");
                 del.className = "app-del-btn";
                 del.type = "button";
-                del.innerHTML = "×";
+                del.innerHTML = '<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
                 del.title = "Remove " + name;
                 del.setAttribute("aria-label", "Remove custom engine " + name);
                 del.addEventListener("click", (e) => {
@@ -349,8 +359,9 @@
         });
 
         if (activeCountEl) {
-            activeCountEl.textContent = APPS.length === 1 ? "1 ENGINE" : `${APPS.length} ENGINES`;
+            activeCountEl.textContent = `${APPS.length}`;
         }
+        updateScopeBadge();
     }
 
     function syncAppLinks() {
@@ -358,7 +369,7 @@
         const q = input.value.trim();
         if (searchClear) searchClear.classList.toggle("visible", q.length > 0);
         if (currentQueryDisplay) {
-            currentQueryDisplay.textContent = q ? `"${q}"` : "READY";
+            currentQueryDisplay.textContent = q ? `"${q}"` : "Ready";
             currentQueryDisplay.title = q ? `Active query: ${q}` : "Ready";
         }
     }
@@ -717,7 +728,12 @@
         if (!items.length) {
             wlList.innerHTML = `
                 <div class="empty-state">
-                    <span class="empty-state-icon">⏱</span>
+                    <span class="empty-state-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </span>
                     <span>No items in Watch Later</span>
                     <span class="empty-state-hint">Save trailers, movies, or videos from suggestions and YouTube results.</span>
                 </div>
@@ -732,7 +748,7 @@
             const removeBtn = document.createElement("button");
             removeBtn.className = "card-btn-action remove";
             removeBtn.type = "button";
-            removeBtn.innerHTML = "×";
+            removeBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
             removeBtn.title = "Remove";
             removeBtn.setAttribute("aria-label", "Remove " + item.title + " from Watch Later");
             removeBtn.addEventListener("click", e => {
@@ -1037,7 +1053,12 @@
         if (!items.length) {
             linksList.innerHTML = `
                 <div class="empty-state">
-                    <span class="empty-state-icon">⎘</span>
+                    <span class="empty-state-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                    </span>
                     <span>No saved links</span>
                     <span class="empty-state-hint">Paste any website URL in the search bar to save it with full OpenGraph metadata.</span>
                 </div>
@@ -1052,7 +1073,7 @@
             const removeBtn = document.createElement("button");
             removeBtn.className = "card-btn-action remove";
             removeBtn.type = "button";
-            removeBtn.innerHTML = "×";
+            removeBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
             removeBtn.title = "Remove";
             removeBtn.setAttribute("aria-label", "Remove " + item.title);
             removeBtn.addEventListener("click", e => {
@@ -1221,7 +1242,7 @@
                 const wlBtn = document.createElement("button");
                 wlBtn.className = "card-btn-action" + (isSaved ? " saved" : "");
                 wlBtn.type = "button";
-                wlBtn.innerHTML = "⏱";
+                wlBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>';
                 wlBtn.title = "Watch Later";
                 wlBtn.setAttribute("aria-label", (isSaved ? "Remove" : "Save") + " " + v.title + " to Watch Later");
                 wlBtn.addEventListener("click", e => {
@@ -1289,16 +1310,147 @@
     }
 
     /* ==========================================================================
-       EVENT BINDINGS & INIT
+       MULTI-TAB SEQUENTIAL SEARCH (1 SEC DELAY)
        ========================================================================== */
+    let multiSearchTimer = null;
+    let isMultiSearchActive = false;
+    let multiSearchIndex = 0;
+    let multiSearchTargets = [];
+    let popupBlockedAlertShown = false;
+
+    function getSearchTargets() {
+        const scope = safeStorageGet(MULTI_SCOPE_KEY, "search_only");
+        if (scope === "all") {
+            return APPS;
+        }
+        const filtered = APPS.filter(a => !a[2]); // Exclude direct-only apps (WhatsApp, Telegram, etc.)
+        return filtered.length > 0 ? filtered : APPS;
+    }
+
+    function updateScopeBadge() {
+        if (!scopeLabel) return;
+        const scope = safeStorageGet(MULTI_SCOPE_KEY, "search_only");
+        const count = getSearchTargets().length;
+        if (scope === "all") {
+            scopeLabel.textContent = `All (${count})`;
+            if (btnScopeToggle) btnScopeToggle.title = "Current: All sites (including direct apps). Click to switch to search engines only.";
+        } else {
+            scopeLabel.textContent = `Search Only (${count})`;
+            if (btnScopeToggle) btnScopeToggle.title = "Current: Search engines only. Click to switch to all sites.";
+        }
+    }
+
+    function updateSearchButtonText() {
+        const isMulti = toggleMultiTab ? toggleMultiTab.checked : safeStorageGet(MULTI_SEARCH_KEY, true);
+        if (searchBtnText) {
+            searchBtnText.textContent = "Search";
+        }
+        if (searchButton) {
+            searchButton.setAttribute(
+                "aria-label",
+                isMulti ? "Execute search across all sites with 1s delay" : "Execute search on top engine"
+            );
+        }
+    }
+
+    function openSafeTab(url) {
+        const safe = sanitizeUrl(url);
+        try {
+            const win = window.open(safe, "_blank");
+            if (win) {
+                try {
+                    win.opener = null;
+                } catch {
+                    // Ignore cross-origin security errors
+                }
+                return win;
+            }
+            return null;
+        } catch (err) {
+            console.warn("window.open failed:", err);
+            return null;
+        }
+    }
+
+    function stopMultiSearch() {
+        if (multiSearchTimer) {
+            clearTimeout(multiSearchTimer);
+            multiSearchTimer = null;
+        }
+        isMultiSearchActive = false;
+    }
+
+    function startSequentialSearch(targets, q) {
+        stopMultiSearch();
+        isMultiSearchActive = true;
+        multiSearchIndex = 0;
+        multiSearchTargets = targets;
+
+        function step() {
+            if (!isMultiSearchActive) return;
+
+            if (multiSearchIndex >= multiSearchTargets.length) {
+                isMultiSearchActive = false;
+                return;
+            }
+
+            const app = multiSearchTargets[multiSearchIndex];
+            const url = targetUrl(app);
+
+            // Open tab silently in the background
+            const win = openSafeTab(url);
+
+            if (!win && multiSearchIndex === 0) {
+                // If browser blocks popups, alert via clean toast
+                showToast("Allow pop-ups in browser to open all tabs");
+            }
+
+            multiSearchIndex++;
+
+            if (multiSearchIndex < multiSearchTargets.length) {
+                multiSearchTimer = setTimeout(step, 5000); // 5-second delay
+            } else {
+                isMultiSearchActive = false;
+            }
+        }
+
+        // Open first tab immediately in the user gesture event context
+        step();
+    }
+
     function executeTopSearch() {
         const q = input.value.trim();
         dismissSuggestions();
-        if (q) {
-            addHistory(q);
-            const g = APPS.find(a => a[0] === "Google") || APPS[0];
-            openSafeUrl(targetUrl(g));
+        if (!q) {
+            input.focus();
+            showToast("Enter a search query first");
+            return;
         }
+
+        addHistory(q);
+
+        const isMulti = toggleMultiTab ? toggleMultiTab.checked : safeStorageGet(MULTI_SEARCH_KEY, true);
+
+        if (!isMulti) {
+            // Single top engine mode (fallback)
+            const g = APPS.find(a => a[0] === "Google") || APPS[0];
+            const target = targetUrl(g);
+            const win = openSafeTab(target);
+            // If popups are blocked by browser, directly navigate the current tab so it NEVER fails!
+            if (!win) {
+                window.location.href = target;
+            }
+            return;
+        }
+
+        // Sequential 1-sec delay across all sites
+        const targets = getSearchTargets();
+        if (!targets.length) {
+            showToast("No search sites available");
+            return;
+        }
+
+        startSequentialSearch(targets, q);
     }
 
     function init() {
@@ -1346,6 +1498,7 @@
                 e.preventDefault();
                 if (isBoxOpen && activeSuggestionIndex >= 0 && activeSuggestionIndex < suggestionRows.length) {
                     suggestionRows[activeSuggestionIndex].click();
+                    executeTopSearch();
                 } else {
                     executeTopSearch();
                 }
@@ -1361,6 +1514,29 @@
         });
 
         searchButton.addEventListener("click", executeTopSearch);
+
+        // Multi-Tab Search Controls
+        if (toggleMultiTab) {
+            toggleMultiTab.checked = safeStorageGet(MULTI_SEARCH_KEY, true);
+            updateSearchButtonText();
+            toggleMultiTab.addEventListener("change", () => {
+                safeStorageSet(MULTI_SEARCH_KEY, toggleMultiTab.checked);
+                updateSearchButtonText();
+                showToast(toggleMultiTab.checked ? "Auto-open all sites enabled (5s delay)" : "Single top engine search enabled");
+            });
+        }
+
+        if (btnScopeToggle) {
+            btnScopeToggle.addEventListener("click", () => {
+                const current = safeStorageGet(MULTI_SCOPE_KEY, "search_only");
+                const next = current === "search_only" ? "all" : "search_only";
+                safeStorageSet(MULTI_SCOPE_KEY, next);
+                updateScopeBadge();
+                showToast(next === "all" ? "Targeting all sites (including direct apps)" : "Targeting search engines only");
+            });
+            updateScopeBadge();
+        }
+
 
         if (searchClear) {
             searchClear.addEventListener("click", () => {
@@ -1443,7 +1619,10 @@
 
         // Global shortcut: press "/" anywhere outside inputs to focus search
         document.addEventListener("keydown", e => {
-            if (e.key === "/" && document.activeElement !== input && document.activeElement !== addAppUrlInput && document.activeElement !== addAppNameInput) {
+            const isTyping = document.activeElement === input || 
+                             document.activeElement === addAppUrlInput || 
+                             document.activeElement === addAppNameInput;
+            if (e.key === "/" && !isTyping) {
                 e.preventDefault();
                 input.focus();
                 input.select();
